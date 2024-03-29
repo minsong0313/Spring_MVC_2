@@ -1,5 +1,6 @@
 package hello.typeconverter.controller;
 
+import hello.typeconverter.type.IpPort;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,14 @@ public class HelloController {
     @GetMapping("/hello-v2")
     public String helloV2(@RequestParam(name = "data") Integer data) { //스프링이 Integer 타입으로 자동으로 변환해줌
         System.out.println("data = " + data);
+        return "ok";
+    }
+
+    //직접 만든 컨버터 적용
+    @GetMapping("/ip-port")
+    public String inPort(@RequestParam(name = "ipPort") IpPort ipPort) {
+        System.out.println("ipPort IP = " + ipPort.getIp());
+        System.out.println("ipPort PORT = " + ipPort.getPort());
         return "ok";
     }
 }
